@@ -4,7 +4,6 @@ import com.codeinfinity.ankit.entity.User;
 import com.codeinfinity.ankit.repository.UserRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +17,8 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public void saveNewUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
