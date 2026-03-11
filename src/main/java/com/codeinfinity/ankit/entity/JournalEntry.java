@@ -1,31 +1,21 @@
 package com.codeinfinity.ankit.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.time.LocalDateTime;
+
+@Document(collection = "journal_entries")
+@Data
+@NoArgsConstructor
 public class JournalEntry {
-    private long id;
+
+    @Id
+    private ObjectId id;
     private String title;
     private String content;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
+    private LocalDateTime date;
 }
